@@ -1,7 +1,7 @@
 # For more information: https://laravel.com/docs/sail
 version: "3"
 services:
-  laravel.test:
+  laravel.proload:
     build:
       context: ./vendor/laravel/sail/runtimes/8.0
       dockerfile: Dockerfile
@@ -21,6 +21,7 @@ services:
       - mysql
       # - redis
       # - selenium
+
   mysql:
     image: "mysql:8.0"
     ports:
@@ -37,6 +38,14 @@ services:
       - sail
     healthcheck:
       test: ["CMD", "mysqladmin", "ping"]
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - sail
   # redis:
   #     image: 'redis:alpine'
   #     ports:
