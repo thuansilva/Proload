@@ -46,6 +46,8 @@ services:
       - 8080:8080
     networks:
       - sail
+    depends_on:
+      - mysql
   # redis:
   #     image: 'redis:alpine'
   #     ports:
