@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', 'App\Http\Controllers\apiInfoController@index');
+Route::get('/', 'App\Http\Controllers\apiInfoController@getDadosBd');
+Route::get('/api/messages', 'App\Http\Controllers\apiInfoController@api');
