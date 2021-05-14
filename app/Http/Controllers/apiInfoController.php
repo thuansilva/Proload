@@ -7,17 +7,16 @@ class apiInfoController extends Controller
 {
 
     public  function index(){
-        $response = Http::get("https://g1.globo.com/rss/g1/");
-        $xml = simplexml_load_string($response);
-        $data = $xml->channel->item->title[0];
-        $file = fopen("Information.txt",'w');
-        fwrite($file, $data);
-        fclose($file);
+
 
         function LerArquivo(){
-            $file = fopen("Information.txt",'r');
-            $arquivo = "Information.txt";
-            $info = fread($file, filesize($arquivo) );
+            $file = fopen("../Information.txt",'r');
+            $arquivo = "../Information.txt";
+            if (!filesize($arquivo)>0 ||$file == NULL ){
+                return 'Daqui a alguns instantes você recebera uma notícia.';
+            };
+            $info = fread($file, filesize($arquivo));
+            fclose($file);
             return $info;
         }
     }
@@ -37,7 +36,7 @@ class apiInfoController extends Controller
     }
 
     public function getDadosBd (){
-        $users =(Array) DB::select('SELECT *
+        $users =DB::select('SELECT *
         FROM `tags`
         where `status` = "Ativo"');
 
@@ -45,7 +44,7 @@ class apiInfoController extends Controller
         for ($i=0; $i< $count;$i++){
            $item[$i]=[
                 'phone' => $users[$i]->telefone,
-                'message'=> '*'.$users[$i]->name.'*'.', olha esssa isso: '.$this->index().LerArquivo(),
+                'message'=> '*'.$users[$i]->name.'*'.', olha esssa isso: '.$this->index().LerArquivo().'- <https://g1.globo.com>',
                 'test_mode'=> true
             ];
 

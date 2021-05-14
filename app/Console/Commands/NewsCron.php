@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Console\Commands;
-
-use App\Http\Controllers\apiInfoController;
-use Illuminate\Routing\Route;
 use Illuminate\Console\Command;
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Http;
+
 
 class NewsCron extends Command
 {
@@ -22,6 +22,11 @@ class NewsCron extends Command
     }
 
     public function handle(){
-          Route::get('/','App\Http\Controllers\apiInfoController@index');
+        $response = Http::get("https://g1.globo.com/rss/g1/");
+        $xml = simplexml_load_string($response);
+        $data = $xml->channel->item->title[0];
+        $file = fopen("Information.txt",'w');
+        fwrite($file, $data);
+        fclose($file);
     }
 }
