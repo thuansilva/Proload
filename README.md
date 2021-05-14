@@ -1,62 +1,66 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://www.zapito.com.br/landing/img/logo.png" width="400"></a></p>
 
-<p align="center">
+<!-- <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+</p> -->
 
-## About Laravel
+# Proload - Avaliação de Desenvovimento
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Criar um sistema que busca notícias de um feed RSS e usa a API do Zapito para enviá-las por WhatsApp a celulares cadastrados em um painel admin.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requistos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   [x] Desenvolver o sistema usando [Laravel](https://laravel.com/)
+-   [x] Criar o painel usando o [Laravel Backpack](https://backpackforlaravel.com);
 
-## Learning Laravel
+    -   Não é necessário comprar uma licensa para [instalar](https://backpackforlaravel.com/docs/4.1/installation) o Backpack;
+    -   É possível criar [CRUDs simples](https://backpackforlaravel.com/docs/4.1/getting-started-basics) com o Backpack com apenas um `Controller`, sem a necessidade de HTML.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-   Criar um [Dockerfile](https://docs.docker.com/engine/reference/builder/) com o PHP e as dependências para facilitar o _deploy_;
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    -   [Docker Compose](https://docs.docker.com/compose/) pode ser utilizado para executar outros serviços, como o servidor HTTP.
 
-## Laravel Sponsors
+-   Subir o código e rodar o sistema em uma [máquina grátis](https://aws.amazon.com/pt/free) da AWS ;
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+-   Enviar por e-mail a URL do repositório público contendo o código e o IP do servidor para contato@zapito.com.br com o assunto `TESTE - ZAPITO`.
 
-### Premium Partners
+Mais Informações no [Link](https://github.com/jaysongyn/proload-desafio-2021)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+## Detalhes
 
-## Contributing
+O sistema deve ter um painel com uma tela de CRUD (criar, listar, atualizar e deletar) dos **destinatários** das mensagens, com no mínimo:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+-   Nome
+-   Telefone
+-   Ativo/Inativo
 
-## Code of Conduct
+De tempos em tempos o sistema deve, automaticamente, buscar e processar o feed RSS do [G1](https://g1.globo.com/rss/g1/).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Então, o sistema deve preparar e enviar mensagens via WhatsApp para os telefones dos **destinatários** usando o endpoint `POST /messages` API do Zapito. Olhe no [Documento do zapito](https://zapito.com.br/api/docs).
 
-## Security Vulnerabilities
+-   É necessário criar uma conta no [Zapito](https://zapito.com.br) para acessar o token da API;
+-   Não é necessário contratar um plano, as mensagens podem ser enviadas com a flag `test_mode`;
+-   A mensagem deve conter ao menos o nome do **destinatário** e o título da notícia.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Rodando o projeto localmente
 
-## License
+-   Clone o Projeto;
+-   Tenha em sua Maquina o [Composer](https://getcomposer.org/), o [PHP](https://www.php.net/) e o [Docker](https://www.docker.com/) instalado;
+-   Ao final execute o comando em seu terminal `composer install`, para instalar todas as dependencias do projeto;
+-   Na raiz do projeto crie um novo arquivo chamado `.env` e compie os dados de `.env-exemple`.Mude as variaveis de ambiente caso necessario, e `TOKEN_ZAPITO` (obrigatório). Gere o seu token em [Zapito](https://zapito.com.br).
+-   Rode o comando `php artisan key:generate`, para gerar uma nova chave para o projeto, que poderá ser visto em `.env`.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+-   Ao final do processo feito anteriormente rode o comando `docker-compose up` e aguarde a finalização;
+-   Para colocar as tabelas no Banco de dadaos rode `php artisan migrate`;
+
+---
+
+-   Em seu navegado coloque a url `http://localhost/admin/`.Crie seu cadastro e acesse.
+-   Ao acessar vá para a opção `Tags` e cadastre o destinatário ao qual será enviada a notícia (em Status são aceito os campos `Ativo/Inativo`).
+
+-   Para enviar as mensagens acesse a rota `http://localhost/admin/tag/messages`.

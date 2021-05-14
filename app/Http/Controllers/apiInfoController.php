@@ -6,18 +6,18 @@ use Illuminate\Support\Facades\DB;
 class apiInfoController extends Controller
 {
 
-    public  function index(){
+    public  function LerArquivo(){
 
 
+        $file = fopen("../Information.txt",'r');
+        $arquivo = "../Information.txt";
+        if (!filesize($arquivo)>0 ||$file == NULL ){
+            return 'Daqui a alguns instantes você recebera uma notícia.';
+        };
+        $info = fread($file, filesize($arquivo));
+        fclose($file);
+        return $info;
         function LerArquivo(){
-            $file = fopen("../Information.txt",'r');
-            $arquivo = "../Information.txt";
-            if (!filesize($arquivo)>0 ||$file == NULL ){
-                return 'Daqui a alguns instantes você recebera uma notícia.';
-            };
-            $info = fread($file, filesize($arquivo));
-            fclose($file);
-            return $info;
         }
     }
 
@@ -32,7 +32,8 @@ class apiInfoController extends Controller
             'Authorization' => 'Bearer '.$token,
             'accept' => 'application/json'])->post('https://zapito.com.br/api/messages',$data);
             echo $response->getBody();
-            echo  $response->getStatusCode();
+            echo $response->getStatusCode();
+
     }
 
     public function getDadosBd (){
@@ -41,10 +42,11 @@ class apiInfoController extends Controller
         where `status` = "Ativo"');
 
         $count = DB::table('tags')->select('*')->where('status', "Ativo")->count('*');
+
         for ($i=0; $i< $count;$i++){
            $item[$i]=[
                 'phone' => $users[$i]->telefone,
-                'message'=> '*'.$users[$i]->name.'*'.', olha esssa isso: '.$this->index().LerArquivo().'- <https://g1.globo.com>',
+                'message'=> '*'.$users[$i]->name.'*'.', olha esssa isso: '.$this->LerArquivo().'- <https://g1.globo.com>',
                 'test_mode'=> true
             ];
 
