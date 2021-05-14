@@ -19,13 +19,13 @@ Criar um sistema que busca notícias de um feed RSS e usa a API do Zapito para e
     -   Não é necessário comprar uma licensa para [instalar](https://backpackforlaravel.com/docs/4.1/installation) o Backpack;
     -   É possível criar [CRUDs simples](https://backpackforlaravel.com/docs/4.1/getting-started-basics) com o Backpack com apenas um `Controller`, sem a necessidade de HTML.
 
--   Criar um [Dockerfile](https://docs.docker.com/engine/reference/builder/) com o PHP e as dependências para facilitar o _deploy_;
+-   [x] Criar um [Dockerfile](https://docs.docker.com/engine/reference/builder/) com o PHP e as dependências para facilitar o _deploy_;
 
-    -   [Docker Compose](https://docs.docker.com/compose/) pode ser utilizado para executar outros serviços, como o servidor HTTP.
+    -   [x] [Docker Compose](https://docs.docker.com/compose/) pode ser utilizado para executar outros serviços, como o servidor HTTP.
 
--   Subir o código e rodar o sistema em uma [máquina grátis](https://aws.amazon.com/pt/free) da AWS ;
+-   [ ] Subir o código e rodar o sistema em uma [máquina grátis](https://aws.amazon.com/pt/free) da AWS ;
 
--   Enviar por e-mail a URL do repositório público contendo o código e o IP do servidor para contato@zapito.com.br com o assunto `TESTE - ZAPITO`.
+-   [x] Enviar por e-mail a URL do repositório público contendo o código e o IP do servidor para contato@zapito.com.br com o assunto `TESTE - ZAPITO`.
 
 Mais Informações no [Link](https://github.com/jaysongyn/proload-desafio-2021)
 
