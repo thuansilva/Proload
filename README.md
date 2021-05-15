@@ -60,7 +60,17 @@ Então, o sistema deve preparar e enviar mensagens via WhatsApp para os telefone
 
 ---
 
+#### Obs:
+
+O sistema usa _scheduling_, para pegar as mensagens do [G1](https://g1.globo.com/rss/g1/), em intervalos de **1 minuto**.
+
+Execute o comando `php artisan schedule:work`, para pegar os dados automaticamente.
+
+---
+
 -   Em seu navegado coloque a url `http://localhost/admin/`.Crie seu cadastro e acesse.
 -   Ao acessar vá para a opção `Tags` e cadastre o destinatário ao qual será enviada a notícia (em Status são aceito os campos `Ativo/Inativo`).
 
--   Para enviar as mensagens acesse a rota `http://localhost/admin/tag/messages`.
+-   Para enviar as mensagens acesse a URL `http://localhost/admin/tag/messages`.
+
+---
