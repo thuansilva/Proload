@@ -41,18 +41,6 @@ class TagCrudController extends CrudController
     {
         CRUD::setFromDb(); // columns
 
-        //  Columns can be defined using the fluent syntax or array syntax:
-        //  - CRUD::column('nome');
-        //  - CRUD::addColumn(['name' => 'nome', 'type' => 'text']);
-
-        //  - CRUD::column('telefone')->type('text');
-        //  - CRUD::addColumn(['name' => 'telefone', 'type' => 'text']);
-
-        //  - CRUD::column('status')->type('text');
-        //  - CRUD::addColumn(['name' => 'status', 'type' => 'text']);
-
-
-
     }
 
     /**
@@ -67,25 +55,8 @@ class TagCrudController extends CrudController
 
         CRUD::setFromDb(); // fields
 
-
-        // //  *Fields can be defined using the fluent syntax or array syntax:
-        //  CRUD::field('nome');
-        //  CRUD::addField(['name' => 'Nome', 'type' => 'text']);
-
-        //  CRUD::field('telefone')->type('text');
-        //  CRUD::addField(['name' => 'telefone', 'type' => 'text']);
-
-        //  CRUD::field('status')->type('text');
-        //  CRUD::addField(['name' => 'status ', 'type' => 'status']);
-
     }
 
-    /**
-     * Define what happens when the Update operation is loaded.
-     *
-     * @see https://backpackforlaravel.com/docs/crud-operation-update
-     * @return void
-     */
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
